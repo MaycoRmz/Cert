@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -161,7 +161,7 @@
         </div>
         <h1>Certificate of Completion</h1>
         <p>This is to certify that</p>
-        <h2>_______________________________</h2>
+        <h2><input type="text" placeholder="Recipient Name"></h2>
         <p>has successfully completed the</p>
         <h2>Shag Truck Train the Trainer Program</h2>
         <p>on the <span class="date-line"></span> day of <span class="date-line"></span>, <span class="date-line"></span></p>
