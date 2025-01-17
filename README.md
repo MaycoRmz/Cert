@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -186,7 +185,7 @@
             </div>
             <div class="signature">
                 <div class="signature-line"></div>
-                <p>Training Supervisor</p>
+                <p>Trainer</p>
             </div>
         </div>
     </div>
