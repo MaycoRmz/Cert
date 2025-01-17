@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +36,9 @@
             font-size: 1.2em;
             margin: 20px 0;
         }
-        .logo {
+        .header {
+            font-family: 'Old English Text MT', serif;
+            font-size: 2.2em;
             margin-bottom: 20px;
         }
         .signatures {
@@ -77,10 +80,7 @@
 <body>
     <div class="certificate">
         <button class="print-btn" onclick="window.print()">Print</button>
-        <div class="logo">
-            <!-- Replace the src below with the actual URL of the JM Smucker logo -->
-            <img src="https://via.placeholder.com/150" alt="JM Smucker Logo">
-        </div>
+        <div class="header">834 Hostess Brands</div>
         <h1>Certificate of Completion</h1>
         <p>This is to certify that</p>
         <h2><input type="text" placeholder="Recipient Name"></h2>
