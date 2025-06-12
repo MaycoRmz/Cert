@@ -1,298 +1,193 @@
-
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shipping Department Organizational Chart</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipping vs Receiving Structure</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      background: white;
-      margin: 20px;
-      color: #333;
+        font-family: Arial, sans-serif;
+        background: white;
+        margin: 20px;
+        color: #333;
     }
-    .chart-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+
     .title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #2e7d32;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #2e7d32;
+        text-align: center;
     }
-    .box {
-      border: 2px solid #333;
-      border-radius: 8px;
-      padding: 15px;
-      margin: 10px;
-      text-align: center;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .executive { background: #f0f0f0; border-color: #666; width: 200px; }
-    .manager { background: #e8f5e8; border-color: #2e7d32; width: 250px; font-size: 18px; }
-    .department { background: #f3e5f5; border-color: #7b1fa2; width: 200px; margin-top: 20px; }
-    .shift-container {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .shift {
-      background: #f5f5f5;
-      border-color: #888;
-      width: 180px;
-      font-size: 14px;
-    }
-    .supervisor, .lead {
-      background: #e1f5fe;
-      border-color: #0277bd;
-      width: 280px;
-      margin-top: 15px;
-    }
-    .role-details {
-      font-size: 12px;
-      font-weight: normal;
-      margin-top: 8px;
-      text-align: left;
-    }
-    .role-details ul {
-      margin: 5px 0;
-      padding-left: 15px;
-    }
-    .role-details li {
-      margin-bottom: 3px;
-    }
-    .connection-line {
-      width: 2px;
-      height: 30px;
-      background: #333;
-      margin: 0 auto;
-    }
-    .horizontal-line {
-      height: 2px;
-      background: #333;
-      margin: 10px 0;
-    }
-    .external-connections {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-      width: 100%;
-      max-width: 800px;
-    }
-    .external-box {
-      background: #f9f9f9;
-      border: 2px dashed #999;
-      border-radius: 8px;
-      padding: 10px;
-      width: 150px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .arrow {
-      font-size: 16px;
-      color: #666;
-      margin: 0 10px;
-    }
+
     .comparison-section {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 40px;
-      width: 100%;
-      gap: 40px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        gap: 30px;
+        flex-wrap: wrap;
     }
+
     .comparison-box {
-      background: #fffde7;
-      border: 1px solid #fbc02d;
-      border-radius: 8px;
-      padding: 15px;
-      width: 45%;
+        flex: 1;
+        background: #fffde7;
+        border: 1px solid #fbc02d;
+        border-radius: 8px;
+        padding: 15px;
+        position: relative;
     }
+
     .comparison-box h3 {
-      margin-top: 0;
-      color: #f57f17;
+        margin-top: 0;
+        color: #f57f17;
+        text-align: center;
     }
-    .comparison-box ul {
-      padding-left: 20px;
-      font-size: 14px;
+
+    .box {
+        border: 2px solid #333;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 10px auto;
+        text-align: center;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        width: 80%;
+        position: relative;
+        background-color: #e3f2fd;
     }
-    .savings-box {
-      margin-top: 30px;
-      padding: 15px;
-      background: #e8f5e9;
-      border-radius: 8px;
-      border: 1px solid #4caf50;
+
+    .connection-line {
+        height: 20px;
+        width: 2px;
+        background: #666;
+        margin: 0 auto;
     }
+
+    .shift {
+        background-color: #fff3e0;
+    }
+
+    .lead {
+        background-color: #e1f5fe;
+    }
+
+    .manager {
+        background-color: #c8e6c9;
+    }
+
+    .tooltip {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -100px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
     .print-button {
-      margin: 20px;
-      padding: 10px 20px;
-      background: #4caf50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
+        display: block;
+        margin: 30px auto;
+        padding: 10px 20px;
+        background-color: #2e7d32;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
     }
-    .print-button:hover {
-      background: #388e3c;
-    }
-  </style>
+</style>
 </head>
 <body>
+<div class="title">Shipping vs Receiving Department Structure</div>
 
-<div class="chart-container">
-  <div class="title">Current/Proposed Shipping Department Structure</div>
-  <button class="print-button" onclick="window.print()">Print to PDF</button>
+<div class="comparison-section">
+  <!-- Shipping Structure -->
+  <div class="comparison-box">
+    <h3>Shipping Department</h3>
+    <div class="box manager tooltip">Logistics Manager
+      <div class="tooltiptext">Oversees shipping operations and supervisors.</div>
+    </div>
+    <div class="connection-line"></div>
+    <div class="box tooltip">Shipping Department
+      <div class="tooltiptext">Coordinates outbound logistics and materials handling.</div>
+    </div>
+    <div class="connection-line"></div>
 
-  <div class="box executive">Executive Leadership</div>
-  <div class="connection-line"></div>
-  <div class="box manager">Logistics Manager<br><span style="font-size: 14px; color: #2e7d32;">(Current Position)</span></div>
-  <div class="connection-line"></div>
-  <div class="box department">Shipping Department</div>
-  <div class="horizontal-line" style="width: 600px;"></div>
-
-  <!-- Shipping Shift Structure -->
-  <div class="shift-container">
-    <!-- 1st Shift -->
-    <div>
-      <div class="box shift">1st Shift<br>Full Operations</div>
-      <div class="box supervisor">
-        <strong>Shipping Supervisor</strong>
-        <div class="role-details">
-          <ul>
-            <li>Order Processing & Fulfillment</li>
-            <li>Carrier & CHEP Coordination</li>
-            <li>Pallet & Corrugated Handling</li>
-            <li>Package Processing</li>
-            <li>Oversight of Forklift Operations</li>
-          </ul>
-        </div>
-      </div>
-      <div class="box lead">
-        <strong>Clerk</strong>
-        <div class="role-details">
-          <ul>
-            <li>Customer Communications</li>
-            <li>Administrative Tasks</li>
-            <li>Labeling & Order Entry</li>
-          </ul>
-        </div>
-      </div>
-      <div class="box lead">
-        <strong>Forklift Operators (x3)</strong>
-        <div class="role-details">
-          <ul>
-            <li>Loading/Unloading</li>
-            <li>Staging</li>
-            <li>Movement Support</li>
-          </ul>
-        </div>
-      </div>
+    <div class="box shift">1st Shift</div>
+    <div class="box lead tooltip">Supervisor
+      <div class="tooltiptext">Handles order fulfillment, admin, packaging, CHEP.</div>
+    </div>
+    <div class="box lead tooltip">Clerk
+      <div class="tooltiptext">Supports order entry, labels, and shipment processing.</div>
+    </div>
+    <div class="box lead tooltip">Forklift Operators (x3)
+      <div class="tooltiptext">Load/unload, organize outbound shipments.</div>
     </div>
 
-    <!-- 2nd Shift -->
-    <div>
-      <div class="box shift">2nd Shift<br>Full Operations</div>
-      <div class="box supervisor">
-        <strong>Shipping Supervisor</strong>
-        <div class="role-details">
-          <ul>
-            <li>Order Processing & Fulfillment</li>
-            <li>Administrative & Clerical Tasks</li>
-            <li>CHEP Pallet Delivery/Returns</li>
-            <li>Corrugated Management</li>
-            <li>Area Organization</li>
-          </ul>
-        </div>
-      </div>
-      <div class="box lead">
-        <strong>Forklift Operators (x3)</strong>
-        <div class="role-details">
-          <ul>
-            <li>Loading/Unloading</li>
-            <li>Staging</li>
-            <li>Movement Support</li>
-          </ul>
-        </div>
-      </div>
+    <div class="box shift">2nd Shift</div>
+    <div class="box lead tooltip">Supervisor
+      <div class="tooltiptext">Same responsibilities as 1st shift minus clerk.</div>
     </div>
+    <div class="box lead tooltip">Forklift Operators (x3)</div>
 
-    <!-- 3rd Shift -->
-    <div>
-      <div class="box shift">3rd Shift<br>Full Operations</div>
-      <div class="box supervisor">
-        <strong>Shipping Supervisor</strong>
-        <div class="role-details">
-          <ul>
-            <li>Order Processing & Fulfillment</li>
-            <li>Administrative & Clerical Tasks</li>
-            <li>CHEP Pallet Management</li>
-            <li>Corrugated Handling</li>
-            <li>Night Operations Support</li>
-          </ul>
-        </div>
-      </div>
-      <div class="box lead">
-        <strong>Forklift Operators (x3)</strong>
-        <div class="role-details">
-          <ul>
-            <li>Loading/Unloading</li>
-            <li>Staging</li>
-            <li>Movement Support</li>
-          </ul>
-        </div>
-      </div>
+    <div class="box shift">3rd Shift</div>
+    <div class="box lead tooltip">Supervisor
+      <div class="tooltiptext">Supports night operations and logistics tasks.</div>
     </div>
+    <div class="box lead tooltip">Forklift Operators (x3)</div>
   </div>
 
-  <!-- External Connections -->
-  <div class="external-connections">
-    <div class="external-box">Customers/Sales Orders<div class="arrow">↓</div><div style="font-size: 12px;">Order processing all shifts</div></div>
-    <div class="external-box">Carriers/CHEP/Corrugated<div class="arrow">↔</div><div style="font-size: 12px;">Logistics coordination</div></div>
-  </div>
-
-  <!-- Time and Cost Saving Suggestions -->
-  <div class="savings-box">
-    <strong>Efficiency Solutions for Shifts Without Clerks:</strong>
-    <ul>
-      <li><strong>Shared Templates:</strong> Quick form/email responses.</li>
-      <li><strong>Tablet-Based Review:</strong> Mobile tools to avoid desk time.</li>
-      <li><strong>Voice-to-Text Tools:</strong> Fast documentation updates.</li>
-      <li><strong>Prepped Paperwork:</strong> 1st shift clerk preps labels/forms.</li>
-      <li><strong>Barcode Integration:</strong> Reduce manual data entry.</li>
-      <li><strong>Batch Admin Time:</strong> 1–2 periods per shift to handle paperwork.</li>
-    </ul>
-  </div>
-
-  <!-- Side-by-Side Comparison -->
-  <div class="comparison-section">
-    <div class="comparison-box">
-      <h3>Shipping Structure</h3>
-      <ul>
-        <li>3 Full Supervisors</li>
-        <li>Each shift has 3 Forklift Operators</li>
-        <li>1st Shift has dedicated Clerk</li>
-        <li>Complex ops: Admin, Fulfillment, CHEP, Corrugated</li>
-      </ul>
+  <!-- Receiving Structure -->
+  <div class="comparison-box">
+    <h3>Receiving Department</h3>
+    <div class="box manager tooltip">Receiving Manager
+      <div class="tooltiptext">Oversees bulk intake, documentation, and flow.</div>
     </div>
-    <div class="comparison-box">
-      <h3>Proposed Receiving Structure</h3>
-      <ul>
-        <li>1 Supervisor</li>
-        <li>2 Leads (one per night shift)</li>
-        <li>Night shifts focus on Production Support</li>
-        <li>Day shift handles full Receiving Operations</li>
-      </ul>
+    <div class="connection-line"></div>
+    <div class="box tooltip">Receiving Department
+      <div class="tooltiptext">Manages incoming materials and silo storage.</div>
     </div>
+    <div class="connection-line"></div>
+
+    <div class="box shift">1st Shift</div>
+    <div class="box lead tooltip">Materials Dept Team Lead
+      <div class="tooltiptext">Manages receiving operations, team, and inventory.</div>
+    </div>
+    <div class="box lead tooltip">Clerk
+      <div class="tooltiptext">Handles vendor communication and quality at intake.</div>
+    </div>
+    <div class="box lead tooltip">Yard Truck/Bulk Unloader</div>
+    <div class="box lead tooltip">Forklift Operators (x2)</div>
+
+    <div class="box shift">2nd Shift</div>
+    <div class="box lead tooltip">Materials Lead
+      <div class="tooltiptext">Focus on production support and receiving flow.</div>
+    </div>
+    <div class="box lead tooltip">Forklift Operator</div>
+
+    <div class="box shift">3rd Shift</div>
+    <div class="box lead tooltip">Materials Lead</div>
+    <div class="box lead tooltip">Forklift Operator</div>
   </div>
 </div>
 
+<button class="print-button" onclick="window.print()">Print or Save as PDF</button>
 </body>
 </html>
